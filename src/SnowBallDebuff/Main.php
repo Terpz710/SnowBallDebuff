@@ -45,7 +45,7 @@ class Main extends PluginBase implements Listener {
         if ($command->getName() === "snowball") {
  
             if ($sender instanceof Player) {
-                $snowball = Item::get(Item::SNOWBALL, 0, 1); // Obtener la bola de nieve usando Item::get()
+                $snowball = Item::get(Item::SNOWBALL, 0, 1);
                
                 $sender->getInventory()->addItem($snowball);
                 
@@ -54,7 +54,7 @@ class Main extends PluginBase implements Listener {
             } else {
                 
                 $sender->sendMessage("Este comando solo se puede usar en el juego.");
-                return false; // Comando no ejecutado con éxito
+                return false;
             }
         }
         return false; // Comando no reconocido
