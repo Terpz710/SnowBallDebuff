@@ -5,7 +5,8 @@ namespace SnowBallDebuff;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
-use pocketmine\item\ItemFactory; // Usar ItemFactory para crear ítems
+use pocketmine\item\Item;
+use pocketmine\item\ItemFactory; // Asegúrate de importar ItemFactory
 use pocketmine\entity\effect\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\command\Command;
@@ -30,13 +31,13 @@ class Main extends PluginBase implements Listener {
             
             // Verificamos si el jugador lanzó una bola de nieve
             $item = $event->getDamager()->getInventory()->getItemInHand();
-            if ($item->getTypeId() === \pocketmine\item\ItemIds::SNOWBALL) { // Usar ItemIds para obtener el ID
+            if ($item->getTypeId() === Item::SNOWBALL) { // Usa Item::SNOWBALL
                 // Obtener el jugador golpeado
                 $targetPlayer = $event->getEntity();
 
                 // Aplicar el efecto de lentitud
                 $effect = new EffectInstance(Effect::getEffect(Effect::SLOWNESS), 100, 1); // 100 ticks, nivel 1
-                $targetPlayer->getEffects()->add($effect); // Asegúrate de usar el método correcto para agregar efectos
+                $targetPlayer->getEffects()->add($effect); // Añadir el efecto al jugador
 
                 // Enviar un mensaje al jugador golpeado
                 $targetPlayer->sendMessage("¡Has sido golpeado por una bola de nieve y ahora estás lento!");
@@ -55,7 +56,7 @@ class Main extends PluginBase implements Listener {
             // Verificamos que el jugador sea un jugador (no un comando de consola)
             if ($sender instanceof Player) {
                 // Crear una bola de nieve
-                $snowball = ItemFactory::getInstance()->get(\pocketmine\item\ItemIds::SNOWBALL, 0, 1); // Usar ItemFactory para obtener la bola de nieve
+                $snowball = ItemFactory::get(Item::SNOWBALL, 0, 1); // Obtener la bola de nieve usando ItemFactory
                 
                 // Agregar la bola de nieve al inventario del jugador
                 $sender->getInventory()->addItem($snowball);
