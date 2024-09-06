@@ -5,7 +5,7 @@ namespace SnowBallDebuff;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
-use pocketmine\item\Item; // Importamos la clase Item
+use pocketmine\item\Item; // Importar Item
 use pocketmine\entity\effect\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\command\Command;
@@ -30,7 +30,7 @@ class Main extends PluginBase implements Listener {
             
             // Verificamos si el jugador lanzó una bola de nieve
             $item = $event->getDamager()->getInventory()->getItemInHand();
-            if ($item->getId() === Item::SNOWBALL) { // Usar getId() para verificar el ítem
+            if ($item->getType() === Item::SNOWBALL) { // Verifica el tipo de ítem
                 // Obtener el jugador golpeado
                 $targetPlayer = $event->getEntity();
 
