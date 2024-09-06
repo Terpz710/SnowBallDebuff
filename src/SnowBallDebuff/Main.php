@@ -10,7 +10,7 @@ use pocketmine\entity\Effect;
 use pocketmine\entity\EffectInstance;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player; // Asegúrate de que sea la clase correcta para los jugadores en API 5
 
 class Main extends PluginBase implements Listener {
 
@@ -36,7 +36,7 @@ class Main extends PluginBase implements Listener {
 
                 // Aplicar el efecto de lentitud
                 $effect = new EffectInstance(Effect::getEffect(Effect::SLOWNESS), 100, 1); // 100 ticks, nivel 1
-                $targetPlayer->addEffect($effect);
+                $targetPlayer->getEffects()->add($effect); // Asegúrate de usar el método correcto para agregar efectos
 
                 // Enviar un mensaje al jugador golpeado
                 $targetPlayer->sendMessage("¡Has sido golpeado por una bola de nieve y ahora estás lento!");
