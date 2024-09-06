@@ -1,6 +1,6 @@
 name: SnowballDebuff
 version: 1.0.0
-main: SnowballDebuff\Main
+main: SnowBallDebuff\Main
 api: 5.0.0
 author: zFrozead0s
 commands:
