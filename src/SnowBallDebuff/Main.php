@@ -5,8 +5,7 @@ namespace SnowBallDebuff;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
-use pocketmine\item\Item;
-use pocketmine\item\ItemFactory; // Asegúrate de importar ItemFactory
+use pocketmine\item\Item; // Importamos la clase Item
 use pocketmine\entity\effect\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\command\Command;
@@ -31,13 +30,13 @@ class Main extends PluginBase implements Listener {
             
             // Verificamos si el jugador lanzó una bola de nieve
             $item = $event->getDamager()->getInventory()->getItemInHand();
-            if ($item->getTypeId() === Item::SNOWBALL) { // Usa Item::SNOWBALL
+            if ($item->getId() === Item::SNOWBALL) { // Usar getId() para verificar el ítem
                 // Obtener el jugador golpeado
                 $targetPlayer = $event->getEntity();
 
                 // Aplicar el efecto de lentitud
                 $effect = new EffectInstance(Effect::getEffect(Effect::SLOWNESS), 100, 1); // 100 ticks, nivel 1
-                $targetPlayer->getEffects()->add($effect); // Añadir el efecto al jugador
+                $targetPlayer->getEffects()->add($effect); // Agregar el efecto
 
                 // Enviar un mensaje al jugador golpeado
                 $targetPlayer->sendMessage("¡Has sido golpeado por una bola de nieve y ahora estás lento!");
@@ -56,7 +55,7 @@ class Main extends PluginBase implements Listener {
             // Verificamos que el jugador sea un jugador (no un comando de consola)
             if ($sender instanceof Player) {
                 // Crear una bola de nieve
-                $snowball = ItemFactory::get(Item::SNOWBALL, 0, 1); // Obtener la bola de nieve usando ItemFactory
+                $snowball = Item::get(Item::SNOWBALL, 0, 1); // Obtener la bola de nieve usando Item::get()
                 
                 // Agregar la bola de nieve al inventario del jugador
                 $sender->getInventory()->addItem($snowball);
