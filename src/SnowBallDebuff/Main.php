@@ -5,7 +5,7 @@ namespace SnowBallDebuff;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
-use pocketmine\item\Item;
+use pocketmine\item\ItemFactory; // Usar ItemFactory para crear ítems
 use pocketmine\entity\effect\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\command\Command;
@@ -30,7 +30,7 @@ class Main extends PluginBase implements Listener {
             
             // Verificamos si el jugador lanzó una bola de nieve
             $item = $event->getDamager()->getInventory()->getItemInHand();
-            if ($item->getTypeId() === Item::SNOWBALL) { // Usar getTypeId en lugar de getId
+            if ($item->getTypeId() === \pocketmine\item\ItemIds::SNOWBALL) { // Usar ItemIds para obtener el ID
                 // Obtener el jugador golpeado
                 $targetPlayer = $event->getEntity();
 
@@ -55,7 +55,7 @@ class Main extends PluginBase implements Listener {
             // Verificamos que el jugador sea un jugador (no un comando de consola)
             if ($sender instanceof Player) {
                 // Crear una bola de nieve
-                $snowball = Item::get(Item::SNOWBALL, 0, 1); // ID de la bola de nieve, sin meta, cantidad 1
+                $snowball = ItemFactory::getInstance()->get(\pocketmine\item\ItemIds::SNOWBALL, 0, 1); // Usar ItemFactory para obtener la bola de nieve
                 
                 // Agregar la bola de nieve al inventario del jugador
                 $sender->getInventory()->addItem($snowball);
