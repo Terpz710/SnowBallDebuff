@@ -1,0 +1,9 @@
+name: SnowballDebuff
+version: 1.0.0
+main: SnowballDebuff\Main
+api: 5.0.0
+author: zFrozead0s
+commands:
+  snowball:
+    description: "Obtén una bola de nieve"
+    usage: "/snowball"
