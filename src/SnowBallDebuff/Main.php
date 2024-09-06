@@ -6,11 +6,11 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\Item;
-use pocketmine\entity\Effect;
-use pocketmine\entity\EffectInstance;
+use pocketmine\entity\effect\Effect;
+use pocketmine\entity\effect\EffectInstance;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\player\Player; // Asegúrate de que sea la clase correcta para los jugadores en API 5
+use pocketmine\player\Player;
 
 class Main extends PluginBase implements Listener {
 
@@ -30,7 +30,7 @@ class Main extends PluginBase implements Listener {
             
             // Verificamos si el jugador lanzó una bola de nieve
             $item = $event->getDamager()->getInventory()->getItemInHand();
-            if ($item->getId() === Item::SNOWBALL) {
+            if ($item->getTypeId() === Item::SNOWBALL) { // Usar getTypeId en lugar de getId
                 // Obtener el jugador golpeado
                 $targetPlayer = $event->getEntity();
 
