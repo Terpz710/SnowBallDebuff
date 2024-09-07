@@ -7,3 +7,8 @@ commands:
   snowball:
     description: "Obtén una bola de nieve"
     usage: "/snowball"
+    permission: snowballdebuff.cmd
+
+permissions:
+  snowballdebuff.cmd:
+    default: true
