@@ -5,7 +5,7 @@ namespace SnowBallDebuff;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
-use pocketmine\item\Item;
+use pocketmine\item\ItemTypeIds;
 use pocketmine\entity\effect\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\command\Command;
@@ -27,10 +27,10 @@ class Main extends PluginBase implements Listener {
             $event->getEntity() instanceof Player) {
             
             $item = $event->getDamager()->getInventory()->getItemInHand();
-            if ($item->getType() === Item::SNOWBALL) { 
+            if ($item->getTypeId() === ItemTypeIds::SNOWBALL) { 
                 $targetPlayer = $event->getEntity();
 
-                $effect = new EffectInstance(Effect::getEffect(Effect::SLOWNESS), 100, 1); // 100 ticks, nivel 1
+                $effect = new EffectInstance(VanillaEffects::SLOWNESS(), 100, 1);
                 $targetPlayer->getEffects()->add($effect);
                 $targetPlayer->sendMessage("¡Has sido golpeado por una bola de nieve y ahora estás lento!");
                 $event->getDamager()->sendMessage("¡Has golpeado a " . $targetPlayer->getName() . " con una bola de nieve!");
@@ -45,7 +45,7 @@ class Main extends PluginBase implements Listener {
         if ($command->getName() === "snowball") {
  
             if ($sender instanceof Player) {
-                $snowball = Item::get(Item::SNOWBALL, 0, 1);
+                $snowball = VanillaItems::SNOWBALL();
                
                 $sender->getInventory()->addItem($snowball);
                 
