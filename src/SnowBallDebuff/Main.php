@@ -7,7 +7,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\ItemTypeIds;
 use pocketmine\item\VanillaItems;
-use pocketmine\entity\effect\VanillaEffects
+use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
